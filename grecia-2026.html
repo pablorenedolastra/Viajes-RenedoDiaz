@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grecia · 25 sep – 4 oct 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F6F2E8;
+  --surface: #FFFFFF;
+  --surface-2: #EFE9DA;
+  --ink: #22303A;
+  --ink-soft: #5B6B72;
+  --line: #DED5C0;
+  --sea: #1F5C77;
+  --sea-deep: #163F52;
+  --sunset: #D9714E;
+  --sunset-soft: #F1DACB;
+  --olive: #6F8354;
+  --olive-soft: #E2E8D6;
+  --amber: #B4832A;
+  --amber-soft: #F3E5C4;
+  --font-display: "Fraunces", serif;
+  --font-body: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-sizing: border-box;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101E28;
+    --surface: #16283555;
+    --surface: #16283A;
+    --surface-2: #1D3244;
+    --ink: #EDEFE8;
+    --ink-soft: #A7B4BA;
+    --line: #2A3F4D;
+    --sunset-soft: #3A2A22;
+    --olive-soft: #223225;
+    --amber-soft: #3A2E17;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101E28;
+  --surface: #16283A;
+  --surface-2: #1D3244;
+  --ink: #EDEFE8;
+  --ink-soft: #A7B4BA;
+  --line: #2A3F4D;
+  --sunset-soft: #3A2A22;
+  --olive-soft: #223225;
+  --amber-soft: #3A2E17;
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* ---------- Header ---------- */
+header.hero {
+  position: relative;
+  padding: 2.4rem 1.4rem 1.6rem;
+  background: linear-gradient(155deg, var(--sea-deep), var(--sea) 65%, #2E7A93 100%);
+  color: #F7F4EA;
+  overflow: hidden;
+}
+header.hero::after {
+  content: "";
+  position: absolute;
+  right: -40px; bottom: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(217,113,78,0.55), rgba(217,113,78,0) 70%);
+}
+.hero-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: #CBE0E6;
+  margin: 0 0 0.4rem;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 6vw, 2.6rem);
+  margin: 0 0 0.5rem;
+  max-width: 20ch;
+}
+.hero-sub {
+  margin: 0;
+  color: #DCE9EA;
+  font-size: 0.98rem;
+  max-width: 40ch;
+}
+.hero-route {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1.1rem;
+  font-size: 0.92rem;
+  color: #F7F4EA;
+  flex-wrap: wrap;
+}
+.hero-route span.stop {
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.22);
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+}
+.hero-route span.arrow { opacity: 0.6; }
+
+/* ---------- Top nav ---------- */
+nav.tabs {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+}
+nav.tabs button {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+nav.tabs button.active {
+  background: var(--sea);
+  color: #fff;
+}
+
+main { max-width: 760px; margin: 0 auto; padding: 1.2rem 1rem 3rem; }
+section.view { display: none; }
+section.view.active { display: block; }
+
+/* ---------- Day picker ---------- */
+.day-picker {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.2rem 0.1rem 0.9rem;
+  margin-bottom: 0.4rem;
+}
+.day-chip {
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 0.55rem 0.8rem;
+  cursor: pointer;
+  text-align: left;
+  min-width: 88px;
+}
+.day-chip .n { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; display:block; }
+.day-chip .d { font-size: 0.74rem; color: var(--ink-soft); display:block; margin-top:0.1rem; }
+.day-chip .dest { font-size: 0.7rem; margin-top: 0.35rem; display: inline-block; padding: 0.12rem 0.45rem; border-radius: 999px; background: var(--surface-2); color: var(--ink-soft); }
+.day-chip.active { border-color: var(--sea); box-shadow: 0 0 0 2px var(--sea) inset; }
+.day-chip.active .dest { background: var(--sea); color: #fff; }
+
+.day-head { margin: 0.6rem 0 1.1rem; }
+.day-head h2 { font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; margin: 0 0 0.2rem; }
+.day-head .sub { color: var(--ink-soft); font-size: 0.92rem; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 0.85rem;
+}
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+.card-head h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.status {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.status.cerrado { background: var(--olive-soft); color: var(--olive); }
+.status.pendiente { background: var(--amber-soft); color: var(--amber); }
+.card p { margin: 0.25rem 0; font-size: 0.95rem; }
+.card p.muted { color: var(--ink-soft); font-size: 0.88rem; }
+.card ul { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+.card li { margin-bottom: 0.3rem; font-size: 0.92rem; }
+.plan-item { border-top: 1px dashed var(--line); padding-top: 0.5rem; margin-top: 0.5rem; }
+.plan-item:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+.plan-time { font-weight: 700; color: var(--sea); font-size: 0.85rem; }
+:root[data-theme="dark"] .plan-time,
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .plan-time { color: #7FC1D6; } }
+
+.pending-hint {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 0.4rem;
+}
+.pending-hint a { color: var(--sunset); font-weight: 600; text-decoration: none; }
+
+/* ---------- Recomendaciones ---------- */
+.dest-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+.dest-tabs button {
+  flex: 1;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.6rem 0.4rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.dest-tabs button.active { background: var(--sea); border-color: var(--sea); color: #fff; }
+.reco-group { margin-bottom: 1.3rem; }
+.reco-group h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.6rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--line);
+}
+.reco-item {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.reco-item:last-child { border-bottom: none; }
+.reco-title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
+.reco-title { font-weight: 700; font-size: 0.96rem; }
+.reco-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--sunset);
+  background: var(--sunset-soft);
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.reco-detail { font-size: 0.9rem; margin: 0.15rem 0 0.15rem; }
+.reco-info { font-size: 0.82rem; color: var(--ink-soft); margin: 0; }
+
+.food-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.6rem;
+}
+.food-list div {
+  background: var(--sunset-soft);
+  border-radius: 12px;
+  padding: 0.6rem 0.7rem;
+  font-size: 0.88rem;
+}
+.food-list b { display: block; font-family: var(--font-display); font-size: 0.98rem; margin-bottom: 0.15rem; }
+
+/* ---------- Info practica ---------- */
+.info-block { margin-bottom: 1.1rem; }
+.info-block h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem;
+}
+.info-block table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.info-block td { padding: 0.4rem 0.3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.info-block td:first-child { color: var(--ink-soft); width: 40%; }
+
+footer.page-foot {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+@media (max-width: 420px) {
+  .hero-title { font-size: 1.7rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="hero-eyebrow">Grecia · 25 septiembre – 4 octubre 2026</p>
+  <h1 class="hero-title">Pablo &amp; Rocío en las Cícladas</h1>
+  <p class="hero-sub">9 noches — Atenas, Milos y Paros. Lo cerrado, lo pendiente y las recomendaciones, todo en un sitio.</p>
+  <div class="hero-route">
+    <span class="stop">Atenas</span><span class="arrow">→</span>
+    <span class="stop">Milos</span><span class="arrow">→</span>
+    <span class="stop">Paros</span><span class="arrow">→</span>
+    <span class="stop">Atenas</span>
+  </div>
+</header>
+
+<nav class="tabs" id="mainTabs">
+  <button data-view="itinerario" class="active">Itinerario</button>
+  <button data-view="recomendaciones">Recomendaciones</button>
+  <button data-view="info">Info práctica</button>
+</nav>
+
+<main>
+
+  <!-- ITINERARIO -->
+  <section class="view active" id="view-itinerario">
+    <div class="day-picker" id="dayPicker"></div>
+    <div id="dayContent"></div>
+  </section>
+
+  <!-- RECOMENDACIONES -->
+  <section class="view" id="view-recomendaciones">
+    <div class="dest-tabs" id="destTabs">
+      <button data-dest="atenas" class="active">Atenas</button>
+      <button data-dest="milos">Milos</button>
+      <button data-dest="paros">Paros</button>
+    </div>
+    <div id="recoContent"></div>
+  </section>
+
+  <!-- INFO PRACTICA -->
+  <section class="view" id="view-info">
+    <div class="info-block">
+      <h3>⛴ Ferries — Seajets</h3>
+      <table>
+        <tr><td>Referencia</td><td>1112QZNQQ</td></tr>
+        <tr><td>Trayectos</td><td>Pireo → Milos (27 sep) · Milos → Paros (30 sep) · Paros → Rafina (4 oct)</td></tr>
+        <tr><td>Importe</td><td>469,80 € — ya cobrado</td></tr>
+        <tr><td>Check-in online</td><td>De 48 h a 2 h antes en webcheckin.seajets.com (o recoger billete en puerto 1 h antes con reserva + DNI/pasaporte)</td></tr>
+        <tr><td>Atención al cliente</td><td>+30 210 710 7710</td></tr>
+        <tr><td>Nota</td><td>Rafina (llegada 4 oct) está cerca del aeropuerto de Atenas, no en el centro</td></tr>
+      </table>
+    </div>
+
+    <div class="info-block">
+      <h3>🏨 Alojamientos — contactos y cancelación</h3>
+      <table>
+        <tr><td>Atenas · Super Downtown (Airbnb)</td><td>229,33 € · cancelación gratis hasta 20/09/2026 · el email no incluía condiciones detalladas, solo tarifas de taxi 55–65 €</td></tr>
+        <tr><td>Milos · Kanelis Studios &amp; Suites</td><td>306 € · Booking.com, 0 € pagado · tel. +30 6942839870 · conf. 5208543375 · PIN 1149 · cargo de 300 € si se cancela después del 27/08/2026</td></tr>
+        <tr><td>Paros · Bungalows Marina (Náousa)</td><td>358,57 € · Booking.com, 0 € pagado · tel. +30 2284 051204 · conf. 5344830131 · PIN 5928 · 50% de cargo tras el 30/08/2026, 100% desde el 01/10/2026</td></tr>
+        <tr><td>Total alojamiento conocido</td><td>893,90 € · 9 noches (no incluye el importe exacto de Atenas)</td></tr>
+      </table>
+    </div>
+
+    <div class="info-block">
+      <h3>✈️ Vuelos</h3>
+      <table>
+        <tr><td>Ida</td><td>Viernes 25 sep, 20:00h · Madrid-Barajas (MAD) → Atenas (ATH), llegada 00:40h del 26 sep</td></tr>
+        <tr><td>Vuelta</td><td>Domingo 4 oct, 15:55h · Atenas-Eleftherios Venizelos (ATH) → Madrid-Barajas (MAD), llegada 18:50h</td></tr>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-foot">Plan de viaje · Grecia 2026 · hecho con cariño para Pablo &amp; Rocío</footer>
+
+<script>
+const DAYS = [
+  {
+    n: 1, date: "25 sep", weekday: "Viernes", dest: "Viaje",
+    transporte: { status: "cerrado", text: "Salida Madrid 20:00h · Aeropuerto Adolfo Suárez–Barajas (MAD) → Atenas. Llegada a Atenas 00:40h (ya sábado 26)." },
+    alojamiento: { status: "cerrado", text: "Atenas · Super Downtown urban studio (Airbnb) — check-in 15:00. Cancelación gratis hasta 20/09/2026. Como aterrizáis pasada la medianoche, esta reserva cubre la noche del 25 al 26." },
+    plan: { status: "pendiente", text: "Día de vuelo, sin plan cerrado." },
+    comida: { status: "pendiente", text: "En el aeropuerto / durante el vuelo." },
+    cena: { status: "pendiente", text: "En el aeropuerto / durante el vuelo." }
+  },
+  {
+    n: 2, date: "26 sep", weekday: "Sábado", dest: "Atenas",
+    transporte: { status: "cerrado", text: "Sin trayectos — día completo a pie y en metro por Atenas." },
+    alojamiento: { status: "cerrado", text: "Atenas · Super Downtown urban studio (Airbnb)." },
+    plan: {
+      status: "cerrado",
+      items: [
+        { time: "07:30", text: "Llegada a las taquillas de la Acrópolis, acceso sureste (junto al metro Akropoli). Abren a las 08:00; id pronto para el primer turno." },
+        { time: "08:00–10:00", text: "Visita a la Acrópolis: Partenón y Erecteón con la mejor luz de la mañana." },
+        { time: "10:15–11:30", text: "Paseo por Plaka y Anafiotika, bajando por la ladera norte." },
+        { time: "11:45–13:15", text: "Ágora Antigua (entrada también gratuita en taquilla): Templo de Hefesto y Stoa de Átalo." },
+        { time: "15:45–18:00", text: "Museo de la Acrópolis (recomendado; puede tener entrada ~20€ si no aplica la gratuidad) o, como alternativa gratuita, Ágora Romana + Biblioteca de Adriano." },
+        { time: "18:30–anochecer", text: "Atardecer en la Colina de Filopapo o el Areópago, viendo iluminarse el Partenón." }
+      ],
+      note: "Consejos: calzado con buen agarre (el mármol resbala mucho), agua reutilizable (hay fuentes dentro de la Acrópolis) y pasar por taquilla física en cada monumento aunque la entrada sea gratis."
+    },
+    comida: { status: "cerrado", text: "13:30–15:30 · Gyros o souvlaki en las terrazas de Monastiraki o el barrio de Psiri." },
+    cena: { status: "pendiente", text: "Por decidir sobre las recomendaciones (Taverna Saita en Plaka, Diodos junto al Ágora, o Electra Roof Garden si queréis vistas de la Acrópolis iluminada)." }
+  },
+  {
+    n: 3, date: "27 sep", weekday: "Domingo", dest: "Atenas → Milos",
+    transporte: { status: "cerrado", text: "⛴ Ferry Pireo → Milos, 09:00–12:25 (Olympic Champion Jet, Seajets 1112QZNQQ). Check-out del Airbnb a las 11:00, pero salid antes: hay que estar en el puerto 1h antes de zarpar. Al llegar a Adamas, recoger el coche/ATV alquilado." },
+    alojamiento: { status: "cerrado", text: "Milos · Kanelis Studios & Suites — check-in 15:00. Cancelación gratis hasta 27/08/2026." },
+    plan: { status: "pendiente", text: "Tarde de llegada a Milos, libre. Por decidir sobre las recomendaciones (Sarakiniko es buena opción para el atardecer si llegáis con tiempo)." },
+    comida: { status: "pendiente", text: "Durante el trayecto o al llegar a Milos." },
+    cena: { status: "pendiente", text: "Por decidir sobre las recomendaciones (O! Hamos! en Adamas, o Medusa en Mandrakia)." }
+  },
+  {
+    n: 4, date: "28 sep", weekday: "Lunes", dest: "Milos",
+    transporte: { status: "cerrado", text: "Ninguno programado — movimiento por la isla en el coche/ATV alquilado." },
+    alojamiento: { status: "cerrado", text: "Milos · Kanelis Studios & Suites." },
+    plan: { status: "pendiente", text: "Por decidir sobre las recomendaciones: Sarakiniko, excursión en barco a Kleftiko, Firiplaka o Tsigrado." },
+    comida: { status: "pendiente", text: "Por decidir sobre las recomendaciones." },
+    cena: { status: "pendiente", text: "Por decidir sobre las recomendaciones." }
+  },
+  {
+    n: 5, date: "29 sep", weekday: "Martes", dest: "Milos",
+    transporte: { status: "cerrado", text: "Ninguno programado — coche/ATV alquilado." },
+    alojamiento: { status: "cerrado", text: "Milos · Kanelis Studios & Suites." },
+    plan: { status: "pendiente", text: "Por decidir sobre las recomendaciones: Paliochori (aguas geotermales), Firopotamos." },
+    comida: { status: "pendiente", text: "Por decidir sobre las recomendaciones." },
+    cena: { status: "pendiente", text: "Por decidir sobre las recomendaciones (Sirocco en Paliochori o Barriello en Tripiti)." }
+  },
+  {
+    n: 6, date: "30 sep", weekday: "Miércoles", dest: "Milos → Paros",
+    transporte: { status: "cerrado", text: "⛴ Ferry Milos → Paros, 08:00–09:45 (Super Jet 2). Salida temprana: check-out del hotel antes de las 07:30. Al llegar a Paros, recoger coche/scooter (Paros Moto, Autoparos…)." },
+    alojamiento: { status: "cerrado", text: "Paros · Bungalows Marina (Náousa) — check-in 14:00. Cancelación gratis hasta 30/08/2026." },
+    plan: { status: "pendiente", text: "Llegada a Náousa, tarde libre para pasear por el pueblo." },
+    comida: { status: "pendiente", text: "Durante el trayecto o al llegar." },
+    cena: { status: "pendiente", text: "Por decidir sobre las recomendaciones (Kargas para gyros, Síparos si queréis algo más elaborado, o Soso/Shosho)." }
+  },
+  {
+    n: 7, date: "1 oct", weekday: "Jueves", dest: "Paros",
+    transporte: { status: "cerrado", text: "Ninguno programado — coche/scooter alquilado." },
+    alojamiento: { status: "cerrado", text: "Paros · Bungalows Marina (Náousa)." },
+    plan: { status: "pendiente", text: "Por decidir sobre las recomendaciones: playas de Kolymbithres o Santa María." },
+    comida: { status: "pendiente", text: "Por decidir sobre las recomendaciones." },
+    cena: { status: "pendiente", text: "Por decidir sobre las recomendaciones." }
+  },
+  {
+    n: 8, date: "2 oct", weekday: "Viernes", dest: "Paros",
+    transporte: { status: "pendiente", text: "Por decidir — si os animáis con la excursión a Antiparos, el mini-ferry sale del puerto de Pounda (~10 min, podéis subir el coche o la moto)." },
+    alojamiento: { status: "cerrado", text: "Paros · Bungalows Marina (Náousa)." },
+    plan: { status: "pendiente", text: "Por decidir sobre las recomendaciones: día en Antiparos (isla + Cave of Antiparos) o playa de Palió Karnágio." },
+    comida: { status: "pendiente", text: "Por decidir sobre las recomendaciones." },
+    cena: { status: "pendiente", text: "Por decidir sobre las recomendaciones." }
+  },
+  {
+    n: 9, date: "3 oct", weekday: "Sábado", dest: "Paros",
+    transporte: { status: "cerrado", text: "Ninguno programado — coche/scooter alquilado." },
+    alojamiento: { status: "cerrado", text: "Paros · Bungalows Marina (Náousa)." },
+    plan: { status: "pendiente", text: "Por decidir sobre las recomendaciones: recorrer la isla — Parikia (capital y puerto), Piso Livadi, o Lefkes (comprobad antes si se ve afectado por el incendio de este verano)." },
+    comida: { status: "pendiente", text: "Por decidir sobre las recomendaciones." },
+    cena: { status: "pendiente", text: "Por decidir sobre las recomendaciones." }
+  },
+  {
+    n: 10, date: "4 oct", weekday: "Domingo", dest: "Paros → Atenas → Madrid",
+    transporte: { status: "cerrado", text: "⛴ Ferry Paros → Rafina, 09:40–13:15 (Superrunner Jet). Check-out 11:00, salid antes: puerto 1h antes. ✈ Vuelo Atenas (ATH) → Madrid (MAD), 15:55h–18:50h." },
+    alojamiento: { status: "cerrado", text: "Ninguno — día de vuelta." },
+    plan: { status: "pendiente", text: "Trayecto de vuelta; sin plan cerrado más allá de los transportes." },
+    comida: { status: "pendiente", text: "Durante el trayecto." },
+    cena: { status: "pendiente", text: "En casa." }
+  }
+];
+
+const RECO = {
+  atenas: [
+    { group: "Imprescindibles", items: [
+      { title: "Acrópolis + Partenón", detail: "El icono de la ciudad. Reserva franja horaria en hhticket.gr — obligatorio en 2026, se agota 5–7 días antes en verano.", info: "Entra a las 8:00 para evitar grupos y calor · 2–2,5h" },
+      { title: "Museo de la Acrópolis", detail: "Visitadlo después del yacimiento, las piezas cobran sentido. Entrada ~10€.", info: "Justo bajo la colina, calle D. Areopagitou" },
+      { title: "Ágora Antigua + Templo de Hefesto", detail: "Ruinas griegas y romanas muy bien conservadas, junto a Monastiraki.", info: "Combínalo con la Biblioteca de Adriano" }
+    ]},
+    { group: "Barrios y atardecer", items: [
+      { title: "Plaka y Anafiotika", detail: "Callejuelas empedradas y casitas cicládicas bajo la Acrópolis. Ideal para pasear al atardecer.", info: "Zona peatonal, tiendas y tabernas" },
+      { title: "Monastiraki + mercadillo", detail: "Ambiente vibrante, flea market los fines de semana, street food y bares con azotea.", info: "Metro L1/L3 Monastiraki" },
+      { title: "Colina Filopappos o Areópago", detail: "Miradores gratuitos con vistas espectaculares de la Acrópolis al atardecer.", info: "El Areópago está de camino bajando de la Acrópolis" }
+    ]},
+    { group: "Restaurantes", items: [
+      { title: "Taverna Saita (Plaka)", detail: "Taverna clásica muy valorada: pulpo, boquerones y albóndigas. 4,3★.", info: "Kydathineon 21 · tel. 21 0322 6671" },
+      { title: "Diodos (Monastiraki)", detail: "Cocina griega con gran ubicación junto al Ágora. Cordero kleftiko.", info: "Adrianou 19 · abre hasta tarde" },
+      { title: "Electra Roof Garden", detail: "Azotea con las mejores vistas de la Acrópolis iluminada. Cena especial (€€€€).", info: "Navarchou Nikodimou 18 · reservar" },
+      { title: "Yiasemi (Plaka)", detail: "Café-restaurante encantador en la escalinata de Mnisikleous. Desayunos y pitas.", info: "Mnisikleous 31 · 9:00–01:00" }
+    ]},
+    { group: "Moverse", items: [
+      { title: "Metro (líneas 1, 2, 3)", detail: "Limpio y fácil. Billete 1,20€ / 90 min. La L3 conecta aeropuerto–Monastiraki.", info: "Del aeropuerto: Metro ~9€ o bus X95 ~5,50€" }
+    ]}
+  ],
+  milos: [
+    { group: "Playas y calas", items: [
+      { title: "Sarakiniko", detail: "El «paisaje lunar» de roca volcánica blanca, la postal de Milos. Salto al agua turquesa.", info: "Ve al amanecer o atardecer; casi sin sombra, lleva gorra" },
+      { title: "Kleftiko", detail: "Cuevas y arcos de roca blanca; de los mejores sitios para nadar y hacer snorkel.", info: "Acceso en barco desde Adamas, o 45 min a pie" },
+      { title: "Firiplaka", detail: "Arena dorada, aguas someras y acantilados de colores. Organizada, con cantina.", info: "A 11 km de Adamas; deportes acuáticos" },
+      { title: "Tsigrado", detail: "Cala escondida preciosa; se baja por un paso estrecho y escalera de madera.", info: "Ideal en días de viento; junto a Firiplaka" },
+      { title: "Paliochori", detail: "Acantilados de colores y aguas cálidas por manantiales geotermales.", info: "El restaurante Sirocco cocina con el calor volcánico" },
+      { title: "Firopotamos", detail: "Cala tranquila con syrmata (casitas de pescadores). Muy fotogénica.", info: "Fácil acceso en coche" }
+    ]},
+    { group: "Restaurantes", items: [
+      { title: "O! Hamos! (Adamas)", detail: "Institución familiar frente a Papikinou; carne y queso de rebaño propio. Sin reservas.", info: "Apunta tu nombre y toma algo mientras esperas" },
+      { title: "Medusa (Mandrakia)", detail: "Taverna de pescado sobre la bahía; sardinas, souvlaki de pez espada.", info: "tel. 2287 023670 · 12:00–23:00" },
+      { title: "Sirocco (Paliochori)", detail: "Cocina con arena volcánica caliente; experiencia única junto al mar.", info: "siroccomilos.gr · 13:00–23:00" },
+      { title: "Barriello (Tripiti)", detail: "De los mejor valorados de la isla; pulpo excepcional. 4,6★.", info: "Mediterránea/griega, €€–€€€" }
+    ]},
+    { group: "Moverse", items: [
+      { title: "Coche o ATV/quad (recomendado)", detail: "Playas dispersas y bus limitado: alquilar vehículo es casi imprescindible.", info: "ATV ~45–65€/día, 65–85€ en jul–ago" },
+      { title: "Niko's, Apollonas Sunshine, Moto Christos", detail: "Alquiler de coche/ATV/moto en Adamas y Pollonia. Reserva con antelación en jul–ago.", info: "Niko's +30 2287024024 · Apollonas +30 6981630133" }
+    ]}
+  ],
+  paros: [
+    { group: "Pueblos", items: [
+      { title: "Náousa", detail: "Obligatorio — es donde os alojáis. El pueblo con más ambiente para comer y salir.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" },
+      { title: "Parikia", detail: "La capital, donde está el puerto al que llegan todos los ferries.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" },
+      { title: "Piso Livadi", detail: "Pueblo costero bastante cuco, con bares en la arena de la playa.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" },
+      { title: "Lefkes", detail: "Uno de los pocos pueblos de interior de la isla. Este verano parece que hubo un incendio cerca — conviene confirmar cómo está antes de ir.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" }
+    ]},
+    { group: "Playas y calas", items: [
+      { title: "Kolymbithres", detail: "La postal de Paros: rocas de granito que forman calas someras y cristalinas, cerca de Náousa. También muy chula para tumbarse en las rocas sin pagar hamaca.", info: "A ~5 km de Náousa; lleva escarpines para las rocas" },
+      { title: "Santa María", detail: "La más tranquila en días de viento; tiene beach club y hamacas.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" },
+      { title: "Mini Santa María", detail: "Pequeña y preciosa, de las mejores para nadar. Junto a Santa María.", info: "Al norte, fácil desde Náousa" },
+      { title: "Palió Karnágio", detail: "Playa sin explotar que casi no conoce nadie. Acceso algo complicado, pero dejando el coche cerca se llega andando.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" },
+      { title: "Golden Beach (Chrissi Akti)", detail: "La playa más grande; capital del windsurf y kitesurf (Bandera Azul).", info: "Costa este; escuelas para principiantes" },
+      { title: "Kalogeros", detail: "Cala natural con arcilla en la roca, como un spa natural. Muy especial.", info: "Costa este; sin servicios, llévate agua" },
+      { title: "Monastiri", detail: "Cerca de Náousa, mezcla de relax y ambiente; buena opción si hay viento.", info: "En la bahía de Náousa" }
+    ]},
+    { group: "Turismo", items: [
+      { title: "Antiparos + Cueva de Antiparos", detail: "Mini-ferry desde el puerto de Pounda (~10 min), se puede subir con moto o coche. Un día entero dando la vuelta a la isla, con parada en la impresionante Cave of Antiparos.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" },
+      { title: "Alquilar coche o moto para recorrer la isla", detail: "Como en Milos, la mejor forma de conocer Paros es moviéndose por libre.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" }
+    ]},
+    { group: "Restaurantes", items: [
+      { title: "Síparos (Náousa)", detail: "La opción más top. Muy bien valorada por muchos viajeros, cocina griega elevada con vistas al Egeo.", info: "siparos.gr · reservar en jul–ago" },
+      { title: "Moschonas (Náousa)", detail: "Marisquería junto al puertito, muy auténtica.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" },
+      { title: "Soso / Shosho (Náousa)", detail: "Cocina griega.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" },
+      { title: "Sousouro (Náousa)", detail: "Para desayunar.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" },
+      { title: "Santé cocktail bar (Náousa)", detail: "Para tomar algo, debajo de un árbol.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" },
+      { title: "Kargas (Náousa)", detail: "Gyros muy auténticos — el souvlaki que merece la cola. También aparece recomendado por viajeros en general.", info: "Recomendación de una amiga que vivió un año en Paros + reseñas de viajeros", badge: "amiga" },
+      { title: "Sigi Ikthios (Náousa)", detail: "En una de las plazas más bonitas junto al puerto veneciano. Marisco fresquísimo.", info: "tel. 2284 052639 · 17:00–00:30" },
+      { title: "Barbarossa (Náousa)", detail: "En primera línea del puerto; ambiente chic. Pide la pasta con langosta.", info: "Reservar; ir por la atmósfera" },
+      { title: "Yemeni (Náousa)", detail: "Institución desde 2007; griego tradicional con buena carta de vinos locales.", info: "Reserva pronto en verano" }
+    ]},
+    { group: "Moverse", items: [
+      { title: "Coche o scooter (recomendado)", detail: "El bus KTEL solo es bueno en el eje Parikia–Náousa; para playas, mejor vehículo propio.", info: "Coche 25–60€/día · scooter 20–35€/día" },
+      { title: "Autoparos, Sardis, Cool Car, Paros Moto", detail: "Agencias fiables en Parikia y Náousa; algunas entregan en el hotel.", info: "Paros Moto +30 698 734 1111 (entrega en puerto/aeropuerto)" },
+      { title: "Aegean Taxi / app Paros Taxi", detail: "Pocos taxis en la isla (~10–15); conviene reservar para aeropuerto o puerto.", info: "Parikia–Náousa ~20–25€" }
+    ]},
+    { group: "Alojamiento — referencia de nuestra amiga", items: [
+      { title: "Anthos Apartments Paros / Parian Lithos Residence", detail: "En Náousa. Ya tenéis Bungalows Marina reservado y pagado, pero los dejamos aquí como referencia por si cambia algo.", info: "Recomendación de una amiga que vivió un año en Paros", badge: "amiga" }
+    ]}
+  ]
+};
+
+const FOODS = [
+  { name: "Souvlaki", desc: "Como un kebab, pero griego, con patatas fritas dentro." },
+  { name: "Pulpo", desc: "Se seca al sol y se sirve con aceite y vinagre, como tapa." },
+  { name: "Loukoumades", desc: "Mini donuts con sabor a churros." },
+  { name: "Ensalada griega", desc: "El clásico que no puede faltar." },
+  { name: "Spanakopita", desc: "Hojaldre relleno de espinacas y queso." },
+  { name: "Moussaka", desc: "El gratinado de berenjena, carne y bechamel." },
+  { name: "Pastitsio", desc: "La versión griega de la lasaña, con pasta larga." }
+];
+
+const dayPicker = document.getElementById("dayPicker");
+const dayContent = document.getElementById("dayContent");
+
+function destTag(d) { return d; }
+
+DAYS.forEach(day => {
+  const chip = document.createElement("button");
+  chip.className = "day-chip" + (day.n === 1 ? " active" : "");
+  chip.dataset.day = day.n;
+  chip.innerHTML = `<span class="n">Día ${day.n}</span><span class="d">${day.weekday} ${day.date}</span><span class="dest">${destTag(day.dest)}</span>`;
+  chip.addEventListener("click", () => renderDay(day.n));
+  dayPicker.appendChild(chip);
+});
+
+function statusPill(status) {
+  return status === "cerrado"
+    ? '<span class="status cerrado">Cerrado</span>'
+    : '<span class="status pendiente">Por decidir</span>';
+}
+
+function renderDay(n) {
+  const day = DAYS.find(d => d.n === n);
+  document.querySelectorAll(".day-chip").forEach(c => c.classList.toggle("active", Number(c.dataset.day) === n));
+
+  let planHtml;
+  if (day.plan.items) {
+    planHtml = `<div class="card">
+      <div class="card-head"><h3>📋 Plan del día</h3>${statusPill(day.plan.status)}</div>
+      ${day.plan.items.map(it => `<div class="plan-item"><div class="plan-time">${it.time}</div><p>${it.text}</p></div>`).join("")}
+      ${day.plan.note ? `<p class="muted" style="margin-top:0.6rem;">${day.plan.note}</p>` : ""}
+    </div>`;
+  } else {
+    planHtml = `<div class="card">
+      <div class="card-head"><h3>📋 Plan del día</h3>${statusPill(day.plan.status)}</div>
+      <p>${day.plan.text}</p>
+      ${day.plan.status === "pendiente" ? '<p class="pending-hint">Mirad la pestaña <a data-goto="recomendaciones">Recomendaciones</a> para elegir.</p>' : ""}
+    </div>`;
+  }
+
+  dayContent.innerHTML = `
+    <div class="day-head">
+      <h2>Día ${day.n} · ${day.weekday} ${day.date}</h2>
+      <div class="sub">${day.dest}</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>🚗 Transporte</h3>${statusPill(day.transporte.status)}</div>
+      <p>${day.transporte.text}</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>🏨 Alojamiento</h3>${statusPill(day.alojamiento.status)}</div>
+      <p>${day.alojamiento.text}</p>
+    </div>
+    ${planHtml}
+    <div class="card">
+      <div class="card-head"><h3>🍽️ Comida</h3>${statusPill(day.comida.status)}</div>
+      <p>${day.comida.text}</p>
+      ${day.comida.status === "pendiente" && !day.comida.text.includes("recomendaciones") ? "" : ""}
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>🌙 Cena</h3>${statusPill(day.cena.status)}</div>
+      <p>${day.cena.text}</p>
+    </div>
+  `;
+
+  dayContent.querySelectorAll('[data-goto]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchView(a.dataset.goto);
+    });
+  });
+}
+
+renderDay(1);
+
+// ---------- Recomendaciones ----------
+const recoContent = document.getElementById("recoContent");
+const destTabs = document.getElementById("destTabs");
+
+function renderReco(dest) {
+  destTabs.querySelectorAll("button").forEach(b => b.classList.toggle("active", b.dataset.dest === dest));
+  let html = "";
+  RECO[dest].forEach(group => {
+    html += `<div class="reco-group"><h3>${group.group}</h3>`;
+    group.items.forEach(item => {
+      html += `<div class="reco-item">
+        <div class="reco-title-row">
+          <span class="reco-title">${item.title}</span>
+          ${item.badge ? '<span class="reco-badge">Amiga en Paros</span>' : ""}
+        </div>
+        <p class="reco-detail">${item.detail}</p>
+        <p class="reco-info">${item.info}</p>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  if (dest === "paros") {
+    html += `<div class="reco-group"><h3>Qué probar sí o sí</h3><div class="food-list">`;
+    FOODS.forEach(f => { html += `<div><b>${f.name}</b>${f.desc}</div>`; });
+    html += `</div></div>`;
+  }
+  recoContent.innerHTML = html;
+}
+
+destTabs.querySelectorAll("button").forEach(btn => {
+  btn.addEventListener("click", () => renderReco(btn.dataset.dest));
+});
+renderReco("atenas");
+
+// ---------- Main nav ----------
+function switchView(view) {
+  document.querySelectorAll("nav.tabs button").forEach(b => b.classList.toggle("active", b.dataset.view === view));
+  document.querySelectorAll("section.view").forEach(s => s.classList.toggle("active", s.id === `view-${view}`));
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+document.getElementById("mainTabs").querySelectorAll("button").forEach(btn => {
+  btn.addEventListener("click", () => switchView(btn.dataset.view));
+});
+</script>
+</body>
+</html>
