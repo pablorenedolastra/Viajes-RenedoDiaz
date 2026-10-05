@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Italia · 8–12 oct 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF6EE; --surface:#FFFFFF; --surface-2:#F3EADB; --ink:#2B2320; --ink-soft:#75665E; --line:#E6D8C3;
+  --brick:#A63D2F; --brick-deep:#7A2A21; --basil:#4F6F52; --basil-soft:#E1EBDD;
+  --ochre:#C58A1F; --ochre-soft:#F6E7C3; --brick-soft:#F4DAD3;
+  --font-display:"DM Serif Display",Georgia,serif;
+  --font-body:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1A1411; --surface:#251C18; --surface-2:#2F2420; --ink:#F4EBDD; --ink-soft:#B5A599; --line:#3D2F28;
+  --brick-soft:#3E211C; --basil-soft:#1F2E21; --ochre-soft:#3A2D14;}}
+:root[data-theme="dark"]{
+  --bg:#1A1411; --surface:#251C18; --surface-2:#2F2420; --ink:#F4EBDD; --ink-soft:#B5A599; --line:#3D2F28;
+  --brick-soft:#3E211C; --basil-soft:#1F2E21; --ochre-soft:#3A2D14;}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+header.hero{position:relative;overflow:hidden;color:#FFF6EA;padding:2.4rem 1.4rem 1.7rem;padding-top:calc(2.4rem + env(safe-area-inset-top,0px));
+  background:linear-gradient(160deg,var(--brick-deep),var(--brick) 70%,#C4553F)}
+header.hero::before{content:"";position:absolute;inset:0;opacity:.12;
+  background:repeating-linear-gradient(90deg,transparent 0 46px,#fff 46px 47px),repeating-linear-gradient(0deg,transparent 0 22px,#fff 22px 23px)}
+header.hero>*{position:relative}
+.hero-eyebrow{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#F6D9C9;margin:0 0 .5rem}
+.hero-title{font-family:var(--font-display);font-weight:400;font-size:clamp(2rem,7vw,2.8rem);line-height:1.1;margin:0 0 .6rem;max-width:18ch}
+.hero-sub{margin:0;color:#FBE6D8;max-width:42ch}
+.hero-route{display:flex;gap:.45rem;align-items:center;margin-top:1.1rem;flex-wrap:wrap;font-size:.9rem}
+.hero-route .stop{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:.28rem .7rem;border-radius:8px}
+.hero-route .arrow{opacity:.7}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;gap:.3rem;padding:.55rem 1rem;background:var(--bg);border-bottom:2px solid var(--brick);overflow-x:auto}
+nav.tabs button{font-family:var(--font-body);font-weight:700;font-size:.92rem;border:none;background:transparent;color:var(--ink-soft);padding:.5rem .9rem;border-radius:8px;cursor:pointer;white-space:nowrap}
+nav.tabs button.active{background:var(--brick);color:#fff}
+main{max-width:760px;margin:0 auto;padding:1.2rem 1rem 3rem}
+section.view{display:none} section.view.active{display:block}
+.day-picker{display:flex;gap:.5rem;overflow-x:auto;padding:.2rem .1rem .9rem}
+.day-chip{flex:0 0 auto;min-width:96px;text-align:left;cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:.55rem .8rem;color:var(--ink);font-family:var(--font-body)}
+.day-chip .n{font-family:var(--font-display);font-size:1.1rem;display:block}
+.day-chip .d{font-size:.74rem;color:var(--ink-soft);display:block}
+.day-chip .dest{font-size:.7rem;margin-top:.35rem;display:inline-block;padding:.12rem .45rem;border-radius:6px;background:var(--surface-2);color:var(--ink-soft)}
+.day-chip.active{border-color:var(--brick);box-shadow:0 0 0 2px var(--brick) inset}
+.day-chip.active .dest{background:var(--brick);color:#fff}
+.day-head{margin:.6rem 0 1.1rem}
+.day-head h2{font-family:var(--font-display);font-weight:400;font-size:1.7rem;margin:0 0 .15rem}
+.day-head .sub{color:var(--ink-soft);font-size:.92rem}
+.card{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--brick);border-radius:10px;padding:.95rem 1.1rem;margin-bottom:.8rem}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-bottom:.4rem}
+.card-head h3{font-family:var(--font-display);font-weight:400;font-size:1.1rem;margin:0}
+.status{font-size:.72rem;font-weight:700;padding:.2rem .55rem;border-radius:6px;white-space:nowrap}
+.status.cerrado{background:var(--basil-soft);color:var(--basil)}
+.status.hecho{background:var(--basil);color:#fff}
+.status.pendiente{background:var(--ochre-soft);color:var(--ochre)}
+.card p{margin:.25rem 0;font-size:.95rem}
+.card p.muted{color:var(--ink-soft);font-size:.88rem}
+.plan-item{border-top:1px dashed var(--line);padding-top:.5rem;margin-top:.5rem}
+.plan-item:first-of-type{border-top:none;padding-top:0;margin-top:0}
+.plan-time{font-weight:700;color:var(--brick);font-size:.85rem}
+.pending-hint{font-size:.85rem;color:var(--ink-soft)}
+.pending-hint a{color:var(--brick);font-weight:700;text-decoration:none;cursor:pointer}
+.dest-tabs{display:flex;gap:.5rem;margin-bottom:1rem}
+.dest-tabs button{flex:1;font-family:var(--font-body);font-weight:700;font-size:.9rem;padding:.6rem .4rem;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);cursor:pointer}
+.dest-tabs button.active{background:var(--brick);border-color:var(--brick);color:#fff}
+.reco-group{margin-bottom:1.3rem}
+.reco-group h3{font-family:var(--font-display);font-weight:400;font-size:1.2rem;margin:0 0 .6rem;padding-bottom:.3rem;border-bottom:1px solid var(--line)}
+.reco-item{padding:.6rem 0;border-bottom:1px solid var(--line)}
+.reco-item:last-child{border-bottom:none}
+.reco-title{font-weight:700}
+.reco-row{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem;flex-wrap:wrap}
+.reco-badge{font-size:.68rem;font-weight:700;color:var(--brick);background:var(--brick-soft);padding:.1rem .45rem;border-radius:6px;white-space:nowrap}
+.reco-detail{font-size:.9rem;margin:.15rem 0}
+.reco-info{font-size:.82rem;color:var(--ink-soft);margin:0}
+.empty{background:var(--surface-2);border-radius:10px;padding:1rem;color:var(--ink-soft);font-size:.92rem}
+.info-block{margin-bottom:1.1rem}
+.info-block h3{font-family:var(--font-display);font-weight:400;font-size:1.15rem;margin:0 0 .5rem}
+.info-block table{width:100%;border-collapse:collapse;font-size:.9rem}
+.info-block td{padding:.45rem .3rem;border-bottom:1px solid var(--line);vertical-align:top}
+.info-block td:first-child{color:var(--ink-soft);width:34%}
+footer.page-foot{text-align:center;color:var(--ink-soft);font-size:.8rem;padding:1.5rem 1rem 2.5rem}
+</style>
+</head>
+<body>
+<header class="hero">
+  <p class="hero-eyebrow">Italia · 8 – 12 octubre 2026</p>
+  <h1 class="hero-title">Familia Renedo de la Lastra en Emilia-Romaña y Toscana</h1>
+  <p class="hero-sub">Siete personas, cuatro noches en Bolonia y dos excursiones: Florencia y Ferrara.</p>
+  <div class="hero-route">
+    <span class="stop">Madrid</span><span class="arrow">→</span>
+    <span class="stop">Bolonia</span><span class="arrow">→</span>
+    <span class="stop">Florencia</span><span class="arrow">·</span>
+    <span class="stop">Ferrara</span><span class="arrow">→</span>
+    <span class="stop">Madrid</span>
+  </div>
+</header>
+
+<nav class="tabs" id="mainTabs">
+  <button data-view="itinerario" class="active">Itinerario</button>
+  <button data-view="recomendaciones">Recomendaciones</button>
+  <button data-view="info">Info práctica</button>
+</nav>
+
+<main>
+  <section class="view active" id="view-itinerario">
+    <div class="day-picker" id="dayPicker"></div>
+    <div id="dayContent"></div>
+  </section>
+
+  <section class="view" id="view-recomendaciones">
+    <div class="dest-tabs" id="destTabs">
+      <button data-dest="bolonia" class="active">Bolonia</button>
+      <button data-dest="florencia">Florencia</button>
+      <button data-dest="ferrara">Ferrara</button>
+    </div>
+    <div id="recoContent"></div>
+  </section>
+
+  <section class="view" id="view-info">
+    <div class="info-block">
+      <h3>✈️ Vuelos</h3>
+      <table>
+        <tr><td>Ida</td><td>Jueves 8 oct · IB1243 (Air Nostrum) · Madrid-Barajas T4 21:20 → Bolonia-Marconi (BLQ) 23:40</td></tr>
+        <tr><td>Vuelta</td><td>Lunes 12 oct · IB1242 (Air Nostrum) · Bolonia-Marconi (BLQ) 19:00 → Madrid-Barajas T4 21:35</td></tr><tr><td>Equipaje (por persona)</td><td>1 pieza de mano hasta 10 kg (56×40×25 cm) + 1 accesorio personal · 1 maleta facturada hasta 23 kg</td></tr><tr><td>Cambios</td><td>Permitidos con penalización de 45 € (salvo primer cambio gratuito si se compró). Reembolso no permitido.</td></tr>
+      </table>
+    </div>
+    <div class="info-block">
+      <h3>🏠 Alojamiento</h3>
+      <table>
+        <tr><td>Bolonia</td><td>Via Francesco Roncati 20 · jueves a lunes</td></tr>
+      </table>
+    </div>
+    <div class="info-block">
+      <h3>🚆 Excursiones</h3>
+      <table>
+        <tr><td>Florencia</td><td>Sábado 10 oct · Italo Bolonia → Florencia 08:17–08:54 (Omio) · Duomo por la mañana (hora por confirmar) · Uffizi 15:00 · vuelta a Bolonia por decidir</td></tr>
+        <tr><td>Ferrara</td><td>Domingo, día completo. Transporte por decidir.</td></tr>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer class="page-foot">Plan de viaje · Italia · Familia Renedo de la Lastra</footer>
+
+<script>
+const P = (text)=>({status:"pendiente", text});
+const DAYS = [
+  { n:1, date:"8 oct", weekday:"Jueves", dest:"Viaje",
+    transporte:{status:"cerrado", text:"✈️ Iberia IB1243 (operado por Air Nostrum): Madrid-Barajas T4 21:20 → Bolonia (BLQ) 23:40."},
+    alojamiento:{status:"cerrado", text:"Bolonia · Via Francesco Roncati 20."},
+    plan:{status:"cerrado", text:"Día de viaje: llegada a Bolonia a las 23:40 y a dormir."},
+    comida:P("Por decidir."), cena:P("Por decidir (probablemente en el aeropuerto o al llegar).") },
+  { n:2, date:"9 oct", weekday:"Viernes", dest:"Bolonia",
+    transporte:P("Por decidir: a pie o transporte público por Bolonia."),
+    alojamiento:{status:"cerrado", text:"Bolonia · Via Francesco Roncati 20."},
+    plan:{status:"pendiente", items:[
+      {time:"Todo el día", text:"Algunos teletrabajan desde el alojamiento."},
+      {time:"Todo el día", text:"El resto visita Bolonia (plan por definir)."}
+    ], note:"Mirad la pestaña Recomendaciones para ir eligiendo qué ver."},
+    comida:P("Por decidir."), cena:P("Por decidir.") },
+  { n:3, date:"10 oct", weekday:"Sábado", dest:"Florencia",
+    transporte:{status:"cerrado", text:"🚆 Tren Italo Bolonia → Florencia, salida 08:17 y llegada 08:54 (billetes comprados vía Omio). Tren de vuelta a Bolonia por confirmar."},
+    alojamiento:{status:"cerrado", text:"Bolonia · Via Francesco Roncati 20."},
+    plan:{status:"cerrado", items:[
+      {time:"Mañana", text:"Duomo (entradas compradas). Hora por confirmar."},
+      {time:"15:00", text:"Galería de los Uffizi (entradas compradas)."}
+    ], note:"Entre el Duomo y los Uffizi queda hueco para comer y pasear."},
+    comida:P("Por decidir."), cena:P("Por decidir.") },
+  { n:4, date:"11 oct", weekday:"Domingo", dest:"Ferrara",
+    transporte:P("Ida y vuelta a Ferrara en el día. Medio y horarios por decidir."),
+    alojamiento:{status:"cerrado", text:"Bolonia · Via Francesco Roncati 20."},
+    plan:P("Día completo en Ferrara. Plan por definir."),
+    comida:P("Por decidir."), cena:P("Por decidir.") },
+  { n:5, date:"12 oct", weekday:"Lunes", dest:"Vuelta",
+    transporte:{status:"cerrado", text:"✈️ Iberia IB1242 (operado por Air Nostrum): Bolonia (BLQ) 19:00 → Madrid-Barajas T4 21:35."},
+    alojamiento:{status:"cerrado", text:"Salida del alojamiento de Via Francesco Roncati 20."},
+    plan:P("Mañana libre antes del vuelo."),
+    comida:P("Por decidir."), cena:{status:"pendiente", text:"En Madrid, a la vuelta."} }
+];
+const LP = "Laura y Pedro";
+const RECO = {
+  bolonia: [
+    { group: "Antes de ir", items: [
+      { title: "Notas de Laura y Pedro", detail: "Las recomendaciones de abajo vienen de su viaje. Todo está muy cerca: la distancia mayor entre iglesias es de 15–20 min a pie.", info: "Los horarios son de octubre de 2012: confirmadlos antes de ir. Las iglesias cierran en misa (por la tarde, hacia las 18:00) y casi todos los museos cierran los lunes.", badge: LP }
+    ]},
+    { group: "Iglesias", items: [
+      { title: "San Petronio", detail: "La «iglesia mayor» de Bolonia, con muchas capillas de interés y otro Compianto junto al altar.", info: "7:45–13:15 y 15:00–18:30", badge: LP },
+      { title: "Santo Stefano", detail: "Quizá la más fascinante: son varias iglesias en una, sobre un asentamiento romano. Lo mejor: el Santo Sepulcro, San Vitale y Agricola y el Cortile de Pilato.", info: "9:00–12:30 y 15:30–18:30", badge: LP },
+      { title: "Santa Maria della Vita y Oratorio", detail: "La gran joya según ellos: el Compianto de Niccolò dell'Arca. Para verlo de cerca e iluminado hay horario propio. El Oratorio tiene una capilla alta con pinturas y otro grupo de terracota.", info: "Iglesia 7:30–19:00 · Compianto 10:00–17:00 · Oratorio 10:00–12:00 y 15:00–18:00", badge: LP },
+      { title: "San Domenico", detail: "Capilla barroca del Rosario y el Arca de Santo Domingo (de Niccolò dell'Arca a Miguel Ángel). Junto a la entrada se puede pasar al claustro del seminario dominico.", info: "9:30–12:30 y 15:30–18:30 (sáb. y dom. hasta 17:30)", badge: LP },
+      { title: "San Giacomo Maggiore", detail: "Como conjunto, la más hermosa. Tras el altar mayor está la capilla de los Bentivoglio, y detrás, por el pórtico, el Oratorio de Santa Cecilia con frescos.", info: "7:30–12:30 y 15:30–18:30 · Oratorio 10:00–13:00 y 14:00–18:00", badge: LP },
+      { title: "San Francesco", detail: "Espléndida iglesia medieval con un altar mayor de mármol del siglo XIV.", info: "6:30–12:00 y 15:00–19:00", badge: LP },
+      { title: "Catedral de San Pietro", detail: "Edificio medieval reconstruido, con un Compianto de terracota del XVI.", info: "7:15–18:45", badge: LP },
+      { title: "Otras para asomarse", detail: "San Martino, Oratorio de San Carlo al Porto, Santa Maria dei Servi (con plaza porticada) y Corpus Domini, con el cuerpo incorrupto de Santa Catalina de Vigri.", info: "Horarios variables", badge: LP }
+    ]},
+    { group: "Museos, palacios y torres", items: [
+      { title: "Torre Asinelli", detail: "Más de 400 escalones; vistas fantásticas de la ciudad.", info: "9:00–17:00", badge: LP },
+      { title: "Archiginnasio y Teatro Anatómico", detail: "Dos joyas ligadas a los orígenes de la Universidad, junto a San Petronio.", info: "L–V 9:00–18:45 · sáb. hasta 13:45 · cerrado domingo", badge: LP },
+      { title: "Palazzo Comunale y Museo Morandi", detail: "Museo Comunale de arte y Sala Borsa (biblioteca con interior interesante). El Museo Morandi estaba provisionalmente en el MAMbo.", info: "Morandi 11:00–18:00 (fin de semana 11:00–20:00)", badge: LP },
+      { title: "Pinacoteca Nacional", detail: "El museo de Bellas Artes: buena pintura desde la Edad Media hasta el XIX.", info: "9:00–19:00", badge: LP },
+      { title: "Museo Civico Medievale", detail: "Para quien guste del arte medieval, sobre todo la escultura.", info: "Mar–vie 9:00–15:00 · fin de semana 10:00–18:30", badge: LP },
+      { title: "Palazzo Poggi (ceras anatómicas)", detail: "Colecciones de la Universidad: ceras anatómicas de las mejores del mundo y maquetas de arquitectura militar.", info: "L–J 9:00–12:30 y 14:00–16:30 · vie. mañana · cerrado fin de semana", badge: LP },
+      { title: "Palazzo Fava y Palazzo Pepoli", detail: "Fava: pinturas renacentistas de los Carracci. Pepoli: sala principal con frescos y exposiciones; enfrente, el Museo de Bolonia.", info: "Fava 10:00–19:00, cierra lunes", badge: LP },
+      { title: "Oratorio de San Colombano", detail: "Frescos de los siglos XV y XVI y colección de instrumentos musicales desde el XVI.", info: "10:00–13:00 y 15:00–19:00", badge: LP },
+      { title: "Colegio de España y MAMbo", detail: "El Colegio solo se ve por fuera (arquitectura de inicios del Renacimiento). MAMbo: arte contemporáneo.", info: "MAMbo mar–vie 12:00–18:00", badge: LP }
+    ]},
+    { group: "Café, comida y bebida", items: [
+      { title: "Terzi (Via Oberdan)", detail: "«El templo cafetero», perfecto para empezar el día.", info: "Café", badge: LP },
+      { title: "Gamberini y Zanarini", detail: "Gamberini (Via Ugo Bassi) para dulces; Zanarini (Piazza Galvani) para sentarse y el aperitivo. También gusta el café de Santo Stefano.", info: "Café y dulces", badge: LP },
+      { title: "Enoteca Italiana (Via Marsala)", detail: "De barra: vino, queso (parmigiano) y, sobre todo, mortadela. Cita obligada para ellos.", info: "8:00–21:00", badge: LP },
+      { title: "Osteria del Sole (Vicolo Ranocchi)", detail: "Se bebe vino con lo que compras en las tiendas de alrededor. Está a espaldas de Santa Maria della Vita.", info: "Mediodía y noche", badge: LP },
+      { title: "Tony's (Via A. Righi)", detail: "Trattoria familiar, pasta espléndida y precios baratos.", info: "Comida y cena", badge: LP },
+      { title: "Da Pietro y Serghei", detail: "Trattoria da Pietro (Via Falegnami), buena carne; Serghei, en la misma zona.", info: "Comida y cena", badge: LP },
+      { title: "Da Gianni y Galluzzi", detail: "Da Gianni, en un callejón de Via Clavature; Galluzzi, en un patio junto a la Torre Galluzzi, desde Piazza Galvani.", info: "Entorno de Piazza Maggiore", badge: LP },
+      { title: "Osteria Bottega (Via S. Caterina)", detail: "Cocina más elaborada.", info: "Cena", badge: LP },
+      { title: "Il Funivia (Piazza Cavour)", detail: "Helados maravillosos y una granizada de limón «gloriosa».", info: "Helado", badge: LP },
+      { title: "Taberna Bentivoglio (Via Mascarella)", detail: "Música en directo y también cena. La zona de «movida» es Piazza Verdi.", info: "Noche", badge: LP },
+      { title: "Bar de copas con frescos", detail: "En la esquina de Via Mentana con Via delle Moline, en estancias de un antiguo palacio con frescos del XVII.", info: "Copas", badge: LP }
+    ]},
+    { group: "Compras", items: [
+      { title: "Charcutería y quesos", detail: "La Baita (Via Pescherie), una salumería en Via Oberdan 16 y una tienda solo de queso al final de la misma calle, donde se ven los parmigianos por añadas. Resuelven un «panino» para comer.", info: "Zona Via Clavature y Pescherie Vecchie", badge: LP },
+      { title: "Chocolate: Majani o Roccati", detail: "Majani (Via Carbonesi) o Roccati (Via Clavature); la ciudad se divide entre ambos. Mejor fuera de verano.", info: "Chocolate", badge: LP },
+      { title: "Perfumería Al Sacro Cuore (Via de' Fusari)", detail: "Espléndida aunque no compréis, por la tienda y las marcas poco habituales.", info: "Tienda", badge: LP },
+      { title: "Librerías", detail: "Una de saldo en Via Oberdan, frente a Terzi, y la Libreria Cinema, Teatro & Musica en Via Mentana.", info: "Libros", badge: LP }
+    ]},
+    { group: "Paseo largo", items: [
+      { title: "Santuario de la Madonna di San Luca", detail: "Se llega por soportales desde Via Saragozza. Algo más de una hora a buen ritmo, empinado al final; la vista de la ciudad es fantástica.", info: "6:30–17:00 en invierno, hasta 19:00 en verano", badge: LP }
+    ]}
+  ],
+  florencia: [],
+  ferrara: []
+};
+
+
+function pill(s){return s==="hecho"?'<span class="status hecho">Hecho ✓</span>':s==="cerrado"?'<span class="status cerrado">Cerrado</span>':'<span class="status pendiente">Por decidir</span>'}
+const dayPicker=document.getElementById("dayPicker"), dayContent=document.getElementById("dayContent");
+DAYS.forEach(d=>{
+  const c=document.createElement("button");
+  c.className="day-chip"+(d.n===1?" active":""); c.dataset.day=d.n;
+  c.innerHTML=`<span class="n">Día ${d.n}</span><span class="d">${d.weekday} ${d.date}</span><span class="dest">${d.dest}</span>`;
+  c.addEventListener("click",()=>renderDay(d.n)); dayPicker.appendChild(c);
+});
+function renderDay(n){
+  const d=DAYS.find(x=>x.n===n);
+  document.querySelectorAll(".day-chip").forEach(c=>c.classList.toggle("active",Number(c.dataset.day)===n));
+  const plan=d.plan.items
+    ? `<div class="card"><div class="card-head"><h3>📋 Plan del día</h3>${pill(d.plan.status)}</div>${d.plan.items.map(i=>`<div class="plan-item"><div class="plan-time">${i.time}</div><p>${i.text}</p></div>`).join("")}${d.plan.note?`<p class="muted" style="margin-top:.6rem">${d.plan.note}</p>`:""}</div>`
+    : `<div class="card"><div class="card-head"><h3>📋 Plan del día</h3>${pill(d.plan.status)}</div><p>${d.plan.text}</p>${d.plan.status==="pendiente"?'<p class="pending-hint">Mirad la pestaña <a data-goto="recomendaciones">Recomendaciones</a> para elegir.</p>':""}</div>`;
+  const card=(t,o)=>`<div class="card"><div class="card-head"><h3>${t}</h3>${pill(o.status)}</div><p>${o.text}</p></div>`;
+  dayContent.innerHTML=`<div class="day-head"><h2>Día ${d.n} · ${d.weekday} ${d.date}</h2><div class="sub">${d.dest}</div></div>`
+    +card("🚆 Transporte",d.transporte)+card("🏠 Alojamiento",d.alojamiento)+plan+card("🍝 Comida",d.comida)+card("🍷 Cena",d.cena);
+  dayContent.querySelectorAll("[data-goto]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();switchView(a.dataset.goto)}));
+}
+renderDay(1);
+
+const recoContent=document.getElementById("recoContent"), destTabs=document.getElementById("destTabs");
+function renderReco(dest){
+  destTabs.querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.dataset.dest===dest));
+  const g=RECO[dest];
+  recoContent.innerHTML=g.length?g.map(gr=>`<div class="reco-group"><h3>${gr.group}</h3>${gr.items.map(i=>`<div class="reco-item"><div class="reco-row"><span class="reco-title">${i.title}</span>${i.badge?`<span class="reco-badge">${i.badge}</span>`:""}</div><p class="reco-detail">${i.detail}</p><p class="reco-info">${i.info}</p></div>`).join("")}</div>`).join("")
+    :'<div class="empty">Aún sin recomendaciones. Las iremos añadiendo aquí: qué ver, dónde comer y cómo moverse.</div>';
+}
+destTabs.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>renderReco(b.dataset.dest)));
+renderReco("bolonia");
+
+function switchView(v){
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.classList.toggle("active",b.dataset.view===v));
+  document.querySelectorAll("section.view").forEach(s=>s.classList.toggle("active",s.id===`view-${v}`));
+  window.scrollTo(0,0);
+}
+document.querySelectorAll("#mainTabs button").forEach(b=>b.addEventListener("click",()=>switchView(b.dataset.view)));
+</script>
+</body>
+</html>
