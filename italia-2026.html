@@ -76,6 +76,7 @@ section.view{display:none} section.view.active{display:block}
 .reco-title{font-weight:700}
 .reco-row{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem;flex-wrap:wrap}
 .reco-badge{font-size:.68rem;font-weight:700;color:var(--brick);background:var(--brick-soft);padding:.1rem .45rem;border-radius:6px;white-space:nowrap}
+.reco-badge.nos{color:var(--basil);background:var(--basil-soft)}
 .reco-detail{font-size:.9rem;margin:.15rem 0}
 .reco-info{font-size:.82rem;color:var(--ink-soft);margin:0}
 .empty{background:var(--surface-2);border-radius:10px;padding:1rem;color:var(--ink-soft);font-size:.92rem}
@@ -91,7 +92,7 @@ footer.page-foot{text-align:center;color:var(--ink-soft);font-size:.8rem;padding
 <header class="hero">
   <p class="hero-eyebrow">Italia · 8 – 12 octubre 2026</p>
   <h1 class="hero-title">Familia Renedo de la Lastra en Emilia-Romaña y Toscana</h1>
-  <p class="hero-sub">Siete personas, cuatro noches en Bolonia y dos excursiones: Florencia y Ferrara.</p>
+  <p class="hero-sub">Siete personas, cuatro noches en Bolonia y dos excursiones: Florencia y Ferrara. Viaje hecho: aquí queda lo que hicimos, dónde comimos y lo que recomendamos.</p>
   <div class="hero-route">
     <span class="stop">Madrid</span><span class="arrow">→</span>
     <span class="stop">Bolonia</span><span class="arrow">→</span>
@@ -139,8 +140,8 @@ footer.page-foot{text-align:center;color:var(--ink-soft);font-size:.8rem;padding
     <div class="info-block">
       <h3>🚆 Excursiones</h3>
       <table>
-        <tr><td>Florencia</td><td>Sábado 10 oct · Italo Bolonia → Florencia 08:17–08:54 (Omio) · Duomo por la mañana (hora por confirmar) · Uffizi 15:00 · vuelta a Bolonia por decidir</td></tr>
-        <tr><td>Ferrara</td><td>Domingo, día completo. Transporte por decidir.</td></tr>
+        <tr><td>Florencia</td><td>Sábado 10 oct · Italo Bolonia → Florencia 08:17–08:54 (Omio) · Duomo y cúpula por la mañana · Uffizi 15:00 · vuelta a Bolonia para cenar</td></tr>
+        <tr><td>Ferrara</td><td>Domingo 11 oct · día completo, vuelta a Bolonia para cenar</td></tr>
       </table>
     </div>
   </section>
@@ -150,42 +151,68 @@ footer.page-foot{text-align:center;color:var(--ink-soft);font-size:.8rem;padding
 
 <script>
 const P = (text)=>({status:"pendiente", text});
+const H = (text)=>({status:"hecho", text});
+const CASA = H("Bolonia · Via Francesco Roncati 20.");
 const DAYS = [
   { n:1, date:"8 oct", weekday:"Jueves", dest:"Viaje",
-    transporte:{status:"cerrado", text:"✈️ Iberia IB1243 (operado por Air Nostrum): Madrid-Barajas T4 21:20 → Bolonia (BLQ) 23:40."},
-    alojamiento:{status:"cerrado", text:"Bolonia · Via Francesco Roncati 20."},
-    plan:{status:"cerrado", text:"Día de viaje: llegada a Bolonia a las 23:40 y a dormir."},
-    comida:P("Por decidir."), cena:P("Por decidir (probablemente en el aeropuerto o al llegar).") },
+    transporte:H("✈️ Iberia IB1243 (operado por Air Nostrum): Madrid-Barajas T4 21:20 → Bolonia (BLQ) 23:40."),
+    alojamiento:CASA,
+    plan:H("Llegamos por la noche y directos a dormir. Ese día no hicimos nada más."),
+    comida:H("Día de viaje."), cena:H("Día de viaje.") },
   { n:2, date:"9 oct", weekday:"Viernes", dest:"Bolonia",
-    transporte:P("Por decidir: a pie o transporte público por Bolonia."),
-    alojamiento:{status:"cerrado", text:"Bolonia · Via Francesco Roncati 20."},
-    plan:{status:"pendiente", items:[
-      {time:"Todo el día", text:"Algunos teletrabajan desde el alojamiento."},
-      {time:"Todo el día", text:"El resto visita Bolonia (plan por definir)."}
-    ], note:"Mirad la pestaña Recomendaciones para ir eligiendo qué ver."},
-    comida:P("Por decidir."), cena:P("Por decidir.") },
+    transporte:H("Día en Bolonia, sin salir de la ciudad."),
+    alojamiento:CASA,
+    plan:{status:"hecho", items:[
+      {time:"Mañana", text:"Unos teletrabajan desde el alojamiento; el resto visita el centro de Bolonia."},
+      {time:"Tarde", text:"Free tour por el centro. Estuvo bastante bien: súper recomendable."}
+    ]},
+    comida:H("<strong>Antica Pizzeria da Michele</strong>, en el centro. Bastante barata, pizzas enormes y muy finas. Ricas, aunque nada especial; la de mortadela y burrata, muy buena."),
+    cena:H("<strong>Trattoria Il Piatto Rotto</strong> (Via Augusto Righi 24a). Cenamos muy bien. Pedid los <em>tortellini in brodo</em>, muy típicos de allí: tortellini en un caldo, muy ricos si hace fresco.") },
   { n:3, date:"10 oct", weekday:"Sábado", dest:"Florencia",
-    transporte:{status:"cerrado", text:"🚆 Tren Italo Bolonia → Florencia, salida 08:17 y llegada 08:54 (billetes comprados vía Omio). Tren de vuelta a Bolonia por confirmar."},
-    alojamiento:{status:"cerrado", text:"Bolonia · Via Francesco Roncati 20."},
-    plan:{status:"cerrado", items:[
-      {time:"Mañana", text:"Duomo (entradas compradas). Hora por confirmar."},
-      {time:"15:00", text:"Galería de los Uffizi (entradas compradas)."}
-    ], note:"Entre el Duomo y los Uffizi queda hueco para comer y pasear."},
-    comida:P("Por decidir."), cena:P("Por decidir.") },
+    transporte:H("🚆 Tren Italo Bolonia → Florencia, 08:17–08:54 (billetes en Omio). Vuelta a Bolonia por la tarde para cenar."),
+    alojamiento:CASA,
+    plan:{status:"hecho", items:[
+      {time:"Mañana", text:"Duomo y subida a la cúpula. Impresionante. Sacad las entradas con antelación: además os ahorráis la cola. Para nosotros merece más la cúpula que la catedral por dentro: la vas viendo mientras subes y arriba tienes vistas de toda Florencia. Depende del tiempo que tengáis."},
+      {time:"15:00", text:"Galería de los Uffizi. Muy de arte: a nosotros no nos encantaron porque no somos tan de arte, pero bien."},
+      {time:"Resto del día", text:"Pasear Florencia en general y el Mercado Central, que no está mal para dar una vuelta."}
+    ], note:"Si vais a estar más días en Florencia, probad también los bocadillos de porchetta de la Antica Porchetteria Granieri 1916."},
+    comida:H("<strong>Panetteria e Stuzzicheria De' Neri</strong> (Via dei Neri 18r). Hay que ir y hacer la cola sí o sí. Focaccias espectaculares; una por persona es grande, hay que tener hambre, pero merece la pena probar varias. Pedimos la nº 1 (burrata y pesto) y la nº 3 (porchetta, stracciatella y crema de trufa). Espectaculares las dos."),
+    cena:H("De vuelta en Bolonia. Nos recomendaron <strong>All'Osteria Bottega</strong> (súper recomendable, hay que reservar sí o sí), pero no encontramos sitio. Acabamos en <strong>La Prosciutteria</strong> (Via Guglielmo Oberdan 19): tablas de embutido para picar y unos vinos. El vino de la casa, muy bueno.") },
   { n:4, date:"11 oct", weekday:"Domingo", dest:"Ferrara",
-    transporte:P("Ida y vuelta a Ferrara en el día. Medio y horarios por decidir."),
-    alojamiento:{status:"cerrado", text:"Bolonia · Via Francesco Roncati 20."},
-    plan:P("Día completo en Ferrara. Plan por definir."),
-    comida:P("Por decidir."), cena:P("Por decidir.") },
+    transporte:H("Ida y vuelta a Ferrara en el día. Da tiempo de sobra para volver a cenar a Bolonia."),
+    alojamiento:CASA,
+    plan:{status:"hecho", items:[
+      {time:"Día completo", text:"Castillo Estense (se puede entrar y es muy chulo), Catedral de Ferrara (fuimos a misa allí), Porta Paola, Via delle Volte e iglesia de San Paolo. Se pueden hacer varios recorridos."}
+    ], note:"Ferrara merece mucho la pena: un día paseándola es perfecto."},
+    comida:H("Queríamos <strong>Trattoria da Noemi</strong> (hay que reservar con mucho tiempo) o <strong>Il Mandolino</strong> (no reservan, mucha cola: id pronto y preparados para esperar), pero no lo conseguimos en ninguna. Comimos en <strong>L'Osteria dal 1997</strong> (Via de' Romei): mandamos un SMS, nos llamaron y reservamos. Tortelli rellenos de calabaza con salvia y mantequilla o con boloñesa; todos muy buenos."),
+    cena:H("En Bolonia, <strong>Osteria dei Grifoni</strong>, en una antigua bodega abovedada. No estaba mal. Teníamos recomendada la <strong>Trattoria da Gianni</strong> (a la que fue Paula), pero estaba cerrada.") },
   { n:5, date:"12 oct", weekday:"Lunes", dest:"Vuelta",
-    transporte:{status:"cerrado", text:"✈️ Iberia IB1242 (operado por Air Nostrum): Bolonia (BLQ) 19:00 → Madrid-Barajas T4 21:35."},
-    alojamiento:{status:"cerrado", text:"Salida del alojamiento de Via Francesco Roncati 20."},
-    plan:P("Mañana libre antes del vuelo."),
-    comida:P("Por decidir."), cena:{status:"pendiente", text:"En Madrid, a la vuelta."} }
+    transporte:H("✈️ Iberia IB1242 (operado por Air Nostrum): Bolonia (BLQ) 19:00 → Madrid-Barajas T4 21:35."),
+    alojamiento:H("Salida del alojamiento de Via Francesco Roncati 20."),
+    plan:{status:"hecho", items:[
+      {time:"Mañana", text:"Ruta de iglesias por Bolonia: Basílica de San Domenico, Santa Maria della Vita y el santuario de Santo Stefano, entre otras. Hay muchas que merece la pena ver."},
+      {time:"Imprescindible", text:"Los Compianti (grupos de terracota). En Santa Maria della Vita merece la pena pagar para ver el de Niccolò dell'Arca."}
+    ]},
+    comida:H("<strong>Trattoria La Montanara</strong>. Nos gustó bastante; hay que reservar. Si os apetece algo rápido, otra opción es una focaccia en Mortadella Lab."),
+    cena:H("En Madrid, a la vuelta.") }
 ];
 const LP = "Laura y Pedro";
+const NOS = "Probado";
+const REC = "Recomendado";
 const RECO = {
   bolonia: [
+    { group: "Lo que probamos", items: [
+      { title: "Free tour por el centro", detail: "Bastante bien para situarse el primer día. Súper recomendable.", info: "Viernes por la tarde", badge: NOS },
+      { title: "Trattoria Il Piatto Rotto", detail: "Cenamos muy bien. Los tortellini in brodo, imprescindibles si hace fresco.", info: "Via Augusto Righi 24a · cena", badge: NOS },
+      { title: "Trattoria La Montanara", detail: "Nos gustó bastante.", info: "Hay que reservar", badge: NOS },
+      { title: "La Prosciutteria", detail: "Tablas de embutido para picar con vino. El de la casa, muy bueno.", info: "Via Guglielmo Oberdan 19 · cena informal", badge: NOS },
+      { title: "Osteria dei Grifoni", detail: "En una antigua bodega abovedada. No estaba mal.", info: "Via de' Griffoni · cena", badge: NOS },
+      { title: "Antica Pizzeria da Michele", detail: "Barata, pizzas enormes y muy finas. Ricas pero nada especial; la de mortadela y burrata, muy buena.", info: "Centro · comida", badge: NOS },
+      { title: "All'Osteria Bottega", detail: "Nos la recomendaron como súper recomendable; no conseguimos sitio.", info: "Via Santa Caterina · reservar sí o sí", badge: REC },
+      { title: "Trattoria da Gianni", detail: "Recomendada (fue Paula); estaba cerrada cuando quisimos ir.", info: "Callejón de Via Clavature", badge: REC },
+      { title: "Mortadella Lab", detail: "Focaccia de mortadela si apetece algo rápido. No llegamos a ir.", info: "Comida rápida", badge: REC },
+      { title: "Ruta de iglesias y Compianti", detail: "San Domenico, Santa Maria della Vita y Santo Stefano, entre muchas. En Santa Maria della Vita merece la pena pagar para ver el Compianto.", info: "Ver detalle de cada una abajo", badge: NOS }
+    ]},
     { group: "Antes de ir", items: [
       { title: "Notas de Laura y Pedro", detail: "Las recomendaciones de abajo vienen de su viaje. Todo está muy cerca: la distancia mayor entre iglesias es de 15–20 min a pie.", info: "Los horarios son de octubre de 2012: confirmadlos antes de ir. Las iglesias cierran en misa (por la tarde, hacia las 18:00) y casi todos los museos cierran los lunes.", badge: LP }
     ]},
@@ -233,8 +260,29 @@ const RECO = {
       { title: "Santuario de la Madonna di San Luca", detail: "Se llega por soportales desde Via Saragozza. Algo más de una hora a buen ritmo, empinado al final; la vista de la ciudad es fantástica.", info: "6:30–17:00 en invierno, hasta 19:00 en verano", badge: LP }
     ]}
   ],
-  florencia: [],
-  ferrara: []
+  florencia: [
+    { group: "Qué ver", items: [
+      { title: "Duomo y cúpula", detail: "Impresionante. Para nosotros merece más la cúpula que la catedral por dentro: la vas viendo mientras subes y arriba hay vistas de toda Florencia.", info: "Sacad entradas con antelación: os ahorráis la cola", badge: NOS },
+      { title: "Galería de los Uffizi", detail: "Muy de arte. No nos encantó porque no somos tan de arte, pero bien.", info: "Entrada con hora", badge: NOS },
+      { title: "Mercado Central y paseo", detail: "El mercado no está mal para dar una vuelta. Lo mejor es pasear Florencia en general.", info: "Sin entrada", badge: NOS }
+    ]},
+    { group: "Dónde comer", items: [
+      { title: "Panetteria e Stuzzicheria De' Neri", detail: "Focaccias espectaculares; una por persona es grande. Pedimos la nº 1 (burrata y pesto) y la nº 3 (porchetta, stracciatella y crema de trufa).", info: "Via dei Neri 18r · hay que hacer la cola sí o sí", badge: NOS },
+      { title: "Antica Porchetteria Granieri 1916", detail: "Bocadillos de porchetta, muy buenos. Para probar si vais a estar varios días.", info: "Comida rápida", badge: REC }
+    ]}
+  ],
+  ferrara: [
+    { group: "Qué ver", items: [
+      { title: "Castillo Estense", detail: "Se puede entrar a verlo y es muy chulo.", info: "Centro", badge: NOS },
+      { title: "Catedral de Ferrara", detail: "Fuimos a misa allí.", info: "Centro", badge: NOS },
+      { title: "Porta Paola, Via delle Volte e iglesia de San Paolo", detail: "Para recorrer paseando. Se pueden hacer varios recorridos por la ciudad.", info: "A pie", badge: NOS }
+    ]},
+    { group: "Dónde comer", items: [
+      { title: "L'Osteria dal 1997", detail: "Tortelli rellenos de calabaza con salvia y mantequilla o con boloñesa; todos muy buenos.", info: "Via de' Romei · reservamos por SMS y nos llamaron", badge: NOS },
+      { title: "Trattoria da Noemi", detail: "Súper recomendada. No pudimos ir.", info: "Reservar con mucho tiempo", badge: REC },
+      { title: "Il Mandolino", detail: "Súper recomendada. No reservan y hay mucha cola: id con tiempo y preparados para esperar.", info: "Via Carlo Mayr 83", badge: REC }
+    ]}
+  ]
 };
 
 
@@ -263,7 +311,7 @@ const recoContent=document.getElementById("recoContent"), destTabs=document.getE
 function renderReco(dest){
   destTabs.querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.dataset.dest===dest));
   const g=RECO[dest];
-  recoContent.innerHTML=g.length?g.map(gr=>`<div class="reco-group"><h3>${gr.group}</h3>${gr.items.map(i=>`<div class="reco-item"><div class="reco-row"><span class="reco-title">${i.title}</span>${i.badge?`<span class="reco-badge">${i.badge}</span>`:""}</div><p class="reco-detail">${i.detail}</p><p class="reco-info">${i.info}</p></div>`).join("")}</div>`).join("")
+  recoContent.innerHTML=g.length?g.map(gr=>`<div class="reco-group"><h3>${gr.group}</h3>${gr.items.map(i=>`<div class="reco-item"><div class="reco-row"><span class="reco-title">${i.title}</span>${i.badge?`<span class="reco-badge${i.badge===NOS?" nos":""}">${i.badge}</span>`:""}</div><p class="reco-detail">${i.detail}</p><p class="reco-info">${i.info}</p></div>`).join("")}</div>`).join("")
     :'<div class="empty">Aún sin recomendaciones. Las iremos añadiendo aquí: qué ver, dónde comer y cómo moverse.</div>';
 }
 destTabs.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>renderReco(b.dataset.dest)));
